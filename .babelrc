@@ -6,7 +6,7 @@
         "bugfixes": true
       }
     ],
-    "@babel/preset-react",
+    "@babel/preset-react"
   ],
   "plugins": [
     "@loadable/babel-plugin",

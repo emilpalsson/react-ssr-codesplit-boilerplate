@@ -9,8 +9,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const clientConfig = {
   target: "web",
   mode: "development",
+  name: "client",
   entry: {
-    client: ["webpack-hot-middleware/client?reload=true&noInfo=true", "./src/client/index.js"],
+    client: [
+      "webpack-hot-middleware/client?reload=true&noInfo=true&name=client",
+      "./src/client/index.js",
+    ],
   },
   devtool: "inline-cheap-module-source-map",
   devServer: {

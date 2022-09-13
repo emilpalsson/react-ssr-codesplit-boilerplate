@@ -3,22 +3,26 @@ import compression from "compression";
 import webpack from "webpack";
 import WebpackDevMiddleware from "webpack-dev-middleware";
 import WebpackHotMiddleware from "webpack-hot-middleware";
+// import WebpackHotServerMiddleware from "webpack-hot-server-middleware";
 import renderer from "./renderer";
 
 const app = express();
 
 if (process.env.NODE_ENV === "development") {
-  const webpackConfig = require("../../webpack/dev/webpack.dev.client.js");
-  const compiler = webpack(webpackConfig);
+  const clientConfig = require("../../webpack/dev/webpack.dev.client.js");
+  // const serverConfig = require("../../webpack/dev/webpack.dev.server.js");
+  // const compiler = webpack([clientConfig, serverConfig]);
+  const compiler = webpack(clientConfig);
 
   app.use(
     WebpackDevMiddleware(compiler, {
-      publicPath: webpackConfig.output.publicPath,
+      publicPath: clientConfig.output.publicPath,
       serverSideRender: true,
     })
   );
 
   app.use(WebpackHotMiddleware(compiler));
+  // app.use(WebpackHotServerMiddleware(compiler));
 }
 
 // Gzip
