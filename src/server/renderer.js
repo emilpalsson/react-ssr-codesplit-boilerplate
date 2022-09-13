@@ -2,7 +2,6 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import path from "path";
-import { ChunkExtractor, ChunkExtractorManager } from "@loadable/server";
 import App from "../components/App";
 
 export default (req) => {

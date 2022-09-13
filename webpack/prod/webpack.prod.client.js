@@ -1,7 +1,7 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin"); // This plugin is used to minify your JavaScript/Typescript files.
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin"); // A Webpack plugin to optimize \ minimize CSS assets.
-const LoadablePlugin = require("@loadable/webpack-plugin");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const ROOT_DIR = path.resolve(__dirname, "../../");
 const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
 const BUILD_DIR = resolvePath("dist");
@@ -46,11 +46,7 @@ const clientConfig = {
   },
   plugins: [
     new MiniCssExtractPlugin(),
-    new LoadablePlugin({
-      outputAsset: false,
-      writeToDisk: true,
-      filename: `${BUILD_DIR}/loadable-stats.json`,
-    }),
+    new WebpackManifestPlugin(),
     // Add any plugins required here for example: Bundle Analyzer, Copy Plugin etc
   ],
   optimization: {

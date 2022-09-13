@@ -1,7 +1,7 @@
 import React from "react";
 import { hydrate, render } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { loadableReady } from "@loadable/component";
+// import { loadableReady } from "@loadable/component";
 import App from "../components/App";
 
 const renderApp = () => {
@@ -16,9 +16,9 @@ const renderApp = () => {
   );
 };
 
-loadableReady(() => {
-  renderApp();
-});
+// loadableReady(() => {
+renderApp();
+// });
 
 if (module.hot) {
   module.hot.accept();

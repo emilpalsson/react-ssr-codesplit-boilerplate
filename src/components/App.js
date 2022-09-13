@@ -1,12 +1,8 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import loadable from "@loadable/component";
 
-// const Home = lazy(() => import("./routes/Home"));
-// const Support = lazy(() => import("./routes/Support"));
-
-const Home = loadable(() => import("./routes/Home"));
-const Support = loadable(() => import("./routes/Support"));
+const Home = React.lazy(() => import("./routes/Home"));
+const Support = React.lazy(() => import("./routes/Support"));
 
 const App = () => (
   <div>
@@ -15,10 +11,12 @@ const App = () => (
     <Link to="/en-us/support">Support</Link>
     <br />
     <br />
-    <Routes>
-      <Route path="/:locale/" element={<Home />} />
-      <Route path="/:locale/support" element={<Support />} />
-    </Routes>
+    <Suspense>
+      <Routes>
+        <Route path="/:locale/" element={<Home />} />
+        <Route path="/:locale/support" element={<Support />} />
+      </Routes>
+    </Suspense>
   </div>
 );
 

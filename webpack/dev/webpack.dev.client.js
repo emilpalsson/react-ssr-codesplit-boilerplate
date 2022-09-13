@@ -1,6 +1,6 @@
 const webpack = require("webpack");
 const path = require("path");
-const LoadablePlugin = require("@loadable/webpack-plugin");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const ROOT_DIR = path.resolve(__dirname, "../../");
 const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
 const BUILD_DIR = resolvePath("dist");
@@ -53,12 +53,7 @@ const clientConfig = {
   plugins: [
     new MiniCssExtractPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    //loadable plugin will create all the chunks
-    new LoadablePlugin({
-      outputAsset: false, // to avoid writing loadable-stats in the same output as client
-      writeToDisk: true,
-      filename: `${BUILD_DIR}/loadable-stats.json`,
-    }),
+    new WebpackManifestPlugin(),
     // Add any plugins required here for example: Bundle Analyzer, Copy Plugin etc
   ],
   optimization: {
